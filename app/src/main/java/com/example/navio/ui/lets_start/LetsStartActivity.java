@@ -1,26 +1,17 @@
 package com.example.navio.ui.lets_start;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import com.example.navio.MainActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.navio.R;
+import com.example.navio.ui.login.LoginActivity;
 
 public class LetsStartActivity extends AppCompatActivity {
     Animation welcomeGoOutAnimation;
@@ -65,9 +56,9 @@ public class LetsStartActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    final Intent intent = new Intent(LetsStartActivity.this, MainActivity.class);
+                    final Intent intent = new Intent(LetsStartActivity.this, LoginActivity.class);
                     startActivity(intent);
-                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
                 }
             }, 400);
@@ -76,7 +67,6 @@ public class LetsStartActivity extends AppCompatActivity {
         helloWelcoTextView.startAnimation(welcomeComeInAnimation);
         ifYouAreTextView.startAnimation(ifYouAreComeInAnimation);
         letsStartButton.startAnimation(buttonComeInAnimation);
-
 
 
         welcomeComeInAnimation.setAnimationListener(new Animation.AnimationListener() {
