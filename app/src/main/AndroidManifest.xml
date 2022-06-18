@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NAVIO">
         <activity
-            android:name=".LetsStartActivity"
+            android:name=".ui.lets_start.LetsStartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

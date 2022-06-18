@@ -6,4 +6,8 @@
     <string name="title_map">Map</string>
     <string name="title_messages">Messages</string>
     <string name="title_account">Account</string>
+    <string name="powered_by_threesmart">Powered by ThreeSmart</string>
+    <string name="hello_welcome_to_navio">Hello!\nWelcome to navIO</string>
+    <string name="if_you_are_">If you are a new employee please contact \nto your manager</string>
+    <string name="lets_start">Let\'s start!</string>
 </resources>

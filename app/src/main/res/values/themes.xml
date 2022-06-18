@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.NAVIO" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#31CDF6</item>
+        <item name="colorPrimaryVariant">#31CDF6</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,4 +13,20 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="powered_by_text">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="hello_welcome_text">
+        <item name="android:textSize">41sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="if_you_are_">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#DDDBDB</item>
+    </style>
+
 </resources>
