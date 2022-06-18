@@ -19,6 +19,8 @@ public class LetsStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lets_start_main);
 
         final Button letsStartButton = findViewById(R.id.lets_start_button);
+        // To read our color
+        letsStartButton.setBackgroundTintList(null);
         letsStartButton.setOnClickListener(view -> {
             final Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
