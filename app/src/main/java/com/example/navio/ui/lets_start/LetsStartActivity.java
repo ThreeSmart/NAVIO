@@ -1,9 +1,12 @@
 package com.example.navio.ui.lets_start;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,15 +14,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.navio.R;
+import com.example.navio.backend.LocalStorage;
 import com.example.navio.ui.login.LoginActivity;
 
 public class LetsStartActivity extends AppCompatActivity {
-    Animation welcomeGoOutAnimation;
-    Animation welcomeComeInAnimation;
-    Animation ifYouAreGoOutAnimation;
-    Animation ifYouAreComeInAnimation;
-    Animation buttonGoOutAnimation;
-    Animation buttonComeInAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,70 +25,84 @@ public class LetsStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lets_start_main);
 
         final Button letsStartButton = findViewById(R.id.lets_start_button);
-        final TextView helloWelcoTextView = findViewById(R.id.hello_welco);
+        final TextView helloWelcomeTextView = findViewById(R.id.hello_welco);
         final TextView ifYouAreTextView = findViewById(R.id.if_you_are_);
-
-        Animation welcomeComeInAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, 800.0f);
-        Animation welcomeGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, -1400.0f);
-        Animation ifYouAreComeInAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, -300.0f);
-        Animation ifYouAreGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, 600.0f);
-        Animation buttonComeInAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, -300.0f);
-        Animation buttonGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, 600.0f);
-        welcomeComeInAnimation.setDuration(800);
-        ifYouAreComeInAnimation.setDuration(800);
-        buttonComeInAnimation.setDuration(800);
+        final TextView poweredByTextView = findViewById(R.id.powered_by_);
 
         // To read our color
         letsStartButton.setBackgroundTintList(null);
+
+        Animation welcomeComeInAnimation = new TranslateAnimation(0.0f, 0f, -500.0f, 500.0f);
+        Animation welcomeGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, -1400.0f);
+
+        Animation ifYouAreComeInAnimation = new TranslateAnimation(0.0f, 0f, 1600.0f, -300.0f);
+        Animation ifYouAreGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, 1400.0f);
+
+        Animation buttonComeInAnimation = new TranslateAnimation(0.0f, 0f, 1600.0f, -300.0f);
+        Animation buttonGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, 1400.0f);
+
+        Animation poweredByInAnimation = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        Animation poweredByOutAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
+
+        poweredByInAnimation.setDuration(1200);
+        welcomeComeInAnimation.setDuration(1700);
+        ifYouAreComeInAnimation.setDuration(2600);
+        buttonComeInAnimation.setDuration(2600);
+
         letsStartButton.setOnClickListener(view -> {
+            makeLetsStartClicked();
+
             welcomeGoOutAnimation.setDuration(800);
             ifYouAreGoOutAnimation.setDuration(800);
             buttonGoOutAnimation.setDuration(800);
+            poweredByOutAnimation.setDuration(800);
+
             welcomeGoOutAnimation.setFillAfter(true);
             ifYouAreGoOutAnimation.setFillAfter(true);
             buttonGoOutAnimation.setFillAfter(true);
-            helloWelcoTextView.startAnimation(welcomeGoOutAnimation);
+            poweredByOutAnimation.setFillAfter(true);
+
+            helloWelcomeTextView.startAnimation(welcomeGoOutAnimation);
             ifYouAreTextView.startAnimation(ifYouAreGoOutAnimation);
             letsStartButton.startAnimation(buttonGoOutAnimation);
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    final Intent intent = new Intent(LetsStartActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                    finish();
-                }
-            }, 400);
+            poweredByTextView.setAnimation(poweredByOutAnimation);
+
+            new Handler().postDelayed(() -> {
+                final Intent intent = new Intent(LetsStartActivity.this, LoginActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            }, 500);
 
         });
-        helloWelcoTextView.startAnimation(welcomeComeInAnimation);
+
+        helloWelcomeTextView.startAnimation(welcomeComeInAnimation);
         ifYouAreTextView.startAnimation(ifYouAreComeInAnimation);
         letsStartButton.startAnimation(buttonComeInAnimation);
-
 
         welcomeComeInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 welcomeComeInAnimation.setFillAfter(true);
-                helloWelcoTextView.setY(helloWelcoTextView.getY() + 800);
-                helloWelcoTextView.clearAnimation();
+                helloWelcomeTextView.setY(helloWelcomeTextView.getY() + 500);
+                helloWelcomeTextView.clearAnimation();
+                poweredByInAnimation.reset();
+                poweredByTextView.setVisibility(View.VISIBLE);
+                poweredByTextView.setAnimation(poweredByInAnimation);
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-
             }
         });
+
         ifYouAreComeInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
 
             @Override
@@ -102,9 +114,9 @@ public class LetsStartActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-
             }
         });
+
         buttonComeInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -123,24 +135,15 @@ public class LetsStartActivity extends AppCompatActivity {
 
             }
         });
-        buttonGoOutAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
 
-            }
+    }
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
+    private void makeLetsStartClicked() {
+        LocalStorage.getInstance()
+                .setContext(this)
+                .setKey(getString(R.string.local_lets_start))
+                .setMode(MODE_PRIVATE)
+                .writeBoolean(getString(R.string.local_executed), true);
     }
 
 }

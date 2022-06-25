@@ -8,7 +8,7 @@
     <string name="title_account">Account</string>
     <string name="powered_by_threesmart">Powered by ThreeSmart</string>
     <string name="hello_welcome_to_navio">Hello!\nWelcome to navIO</string>
-    <string name="if_you_are_">If you are a new employee please contact \nto your manager</string>
+    <string name="if_you_are_">If you are a new employee please \n contact your manager</string>
     <string name="lets_start">Let\'s start!</string>
     <string name="sign_in">Sign In</string>
     <string name="username">Username</string>
@@ -17,4 +17,6 @@
     <string name="log_in">Log In</string>
     <string name="dont_have_an_account">Don’t have an account?</string>
     <string name="sign_up">Sign up</string>
+    <string name="local_lets_start">LETS_START</string>
+    <string name="local_executed">executed</string>
 </resources>
