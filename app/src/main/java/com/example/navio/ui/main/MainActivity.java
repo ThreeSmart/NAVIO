@@ -1,4 +1,4 @@
-package com.example.navio;
+package com.example.navio.ui.main;
 
 import android.os.Bundle;
 
@@ -7,6 +7,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.navio.R;
 import com.example.navio.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
