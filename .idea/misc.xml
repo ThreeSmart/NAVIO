@@ -5,11 +5,7 @@
       <map>
         <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/drawable/account_icon.xml" value="0.1275" />
         <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/drawable/home_icon.xml" value="0.1275" />
-        <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/layout/activity_lets_start_main.xml" value="0.1" />
         <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/layout/fragment_account.xml" value="0.1" />
-        <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/layout/fragment_map.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/account_icon.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
@@ -28,6 +24,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.18853912353515628" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.29891304347826086" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.24048913043478262" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.1339918946301925" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.29257246376811596" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
