@@ -1,9 +1,12 @@
 package com.example.navio.ui.lets_start;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +27,7 @@ public class LetsStartActivity extends AppCompatActivity {
         final Button letsStartButton = findViewById(R.id.lets_start_button);
         final TextView helloWelcomeTextView = findViewById(R.id.hello_welco);
         final TextView ifYouAreTextView = findViewById(R.id.if_you_are_);
+        final TextView poweredByTextView = findViewById(R.id.powered_by_);
 
         // To read our color
         letsStartButton.setBackgroundTintList(null);
@@ -37,6 +41,10 @@ public class LetsStartActivity extends AppCompatActivity {
         Animation buttonComeInAnimation = new TranslateAnimation(0.0f, 0f, 1600.0f, -300.0f);
         Animation buttonGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, 1400.0f);
 
+        Animation poweredByInAnimation = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        Animation poweredByOutAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
+
+        poweredByInAnimation.setDuration(1200);
         welcomeComeInAnimation.setDuration(1700);
         ifYouAreComeInAnimation.setDuration(2600);
         buttonComeInAnimation.setDuration(2600);
@@ -47,14 +55,17 @@ public class LetsStartActivity extends AppCompatActivity {
             welcomeGoOutAnimation.setDuration(800);
             ifYouAreGoOutAnimation.setDuration(800);
             buttonGoOutAnimation.setDuration(800);
+            poweredByOutAnimation.setDuration(800);
 
             welcomeGoOutAnimation.setFillAfter(true);
             ifYouAreGoOutAnimation.setFillAfter(true);
             buttonGoOutAnimation.setFillAfter(true);
+            poweredByOutAnimation.setFillAfter(true);
 
             helloWelcomeTextView.startAnimation(welcomeGoOutAnimation);
             ifYouAreTextView.startAnimation(ifYouAreGoOutAnimation);
             letsStartButton.startAnimation(buttonGoOutAnimation);
+            poweredByTextView.setAnimation(poweredByOutAnimation);
 
             new Handler().postDelayed(() -> {
                 final Intent intent = new Intent(LetsStartActivity.this, LoginActivity.class);
@@ -79,6 +90,9 @@ public class LetsStartActivity extends AppCompatActivity {
                 welcomeComeInAnimation.setFillAfter(true);
                 helloWelcomeTextView.setY(helloWelcomeTextView.getY() + 500);
                 helloWelcomeTextView.clearAnimation();
+                poweredByInAnimation.reset();
+                poweredByTextView.setVisibility(View.VISIBLE);
+                poweredByTextView.setAnimation(poweredByInAnimation);
             }
 
             @Override

@@ -28,6 +28,7 @@
         android:textAppearance="@style/powered_by_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
         tools:ignore="MissingConstraints" />
 
     <TextView
