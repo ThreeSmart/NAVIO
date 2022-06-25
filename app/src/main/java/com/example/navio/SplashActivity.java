@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.navio.backend.LocalStorage;
 import com.example.navio.ui.lets_start.LetsStartActivity;
+import com.example.navio.ui.login.LoginActivity;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -20,7 +22,16 @@ public class SplashActivity extends AppCompatActivity {
 
         final Context context = this;
         new Handler().postDelayed(() -> {
-            final Intent intent = new Intent(context, LetsStartActivity.class);
+            boolean letsStartExecuted = LocalStorage.getInstance()
+                    .setContext(this)
+                    .setMode(MODE_PRIVATE)
+                    .setKey(getString(R.string.local_lets_start))
+                    .getBoolean(getString(R.string.local_executed));
+
+            final Intent intent;
+            if (letsStartExecuted) intent = new Intent(context, LoginActivity.class);
+            else intent = new Intent(context, LetsStartActivity.class);
+
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();

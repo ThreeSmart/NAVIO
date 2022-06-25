@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.navio.R;
+import com.example.navio.backend.LocalStorage;
 import com.example.navio.ui.login.LoginActivity;
 
 public class LetsStartActivity extends AppCompatActivity {
@@ -21,8 +22,11 @@ public class LetsStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lets_start_main);
 
         final Button letsStartButton = findViewById(R.id.lets_start_button);
-        final TextView helloWelcoTextView = findViewById(R.id.hello_welco);
+        final TextView helloWelcomeTextView = findViewById(R.id.hello_welco);
         final TextView ifYouAreTextView = findViewById(R.id.if_you_are_);
+
+        // To read our color
+        letsStartButton.setBackgroundTintList(null);
 
         Animation welcomeComeInAnimation = new TranslateAnimation(0.0f, 0f, -500.0f, 500.0f);
         Animation welcomeGoOutAnimation = new TranslateAnimation(0.0f, 0f, 0.0f, -1400.0f);
@@ -37,20 +41,22 @@ public class LetsStartActivity extends AppCompatActivity {
         ifYouAreComeInAnimation.setDuration(2600);
         buttonComeInAnimation.setDuration(2600);
 
-        // To read our color
-        letsStartButton.setBackgroundTintList(null);
         letsStartButton.setOnClickListener(view -> {
+            makeLetsStartClicked();
+
             welcomeGoOutAnimation.setDuration(800);
             ifYouAreGoOutAnimation.setDuration(800);
             buttonGoOutAnimation.setDuration(800);
+
             welcomeGoOutAnimation.setFillAfter(true);
             ifYouAreGoOutAnimation.setFillAfter(true);
             buttonGoOutAnimation.setFillAfter(true);
-            helloWelcoTextView.startAnimation(welcomeGoOutAnimation);
+
+            helloWelcomeTextView.startAnimation(welcomeGoOutAnimation);
             ifYouAreTextView.startAnimation(ifYouAreGoOutAnimation);
             letsStartButton.startAnimation(buttonGoOutAnimation);
-            Handler handler = new Handler();
-            handler.postDelayed(() -> {
+
+            new Handler().postDelayed(() -> {
                 final Intent intent = new Intent(LetsStartActivity.this, LoginActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -58,10 +64,10 @@ public class LetsStartActivity extends AppCompatActivity {
             }, 500);
 
         });
-        helloWelcoTextView.startAnimation(welcomeComeInAnimation);
+
+        helloWelcomeTextView.startAnimation(welcomeComeInAnimation);
         ifYouAreTextView.startAnimation(ifYouAreComeInAnimation);
         letsStartButton.startAnimation(buttonComeInAnimation);
-
 
         welcomeComeInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -71,8 +77,8 @@ public class LetsStartActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 welcomeComeInAnimation.setFillAfter(true);
-                helloWelcoTextView.setY(helloWelcoTextView.getY() + 500);
-                helloWelcoTextView.clearAnimation();
+                helloWelcomeTextView.setY(helloWelcomeTextView.getY() + 500);
+                helloWelcomeTextView.clearAnimation();
             }
 
             @Override
@@ -116,24 +122,14 @@ public class LetsStartActivity extends AppCompatActivity {
             }
         });
 
-        buttonGoOutAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
+    }
 
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
+    private void makeLetsStartClicked() {
+        LocalStorage.getInstance()
+                .setContext(this)
+                .setKey(getString(R.string.local_lets_start))
+                .setMode(MODE_PRIVATE)
+                .writeBoolean(getString(R.string.local_executed), true);
     }
 
 }
