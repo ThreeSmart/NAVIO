@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sign_in" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/usernameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -43,6 +43,7 @@
         android:hint="@string/username"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
+        android:text="rshakhnazarii"
         android:textColor="@color/login_hint_color"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -50,7 +51,7 @@
         tools:ignore="RtlSymmetry,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -59,9 +60,10 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        android:text="user"
+        app:layout_constraintEnd_toEndOf="@+id/usernameInput"
+        app:layout_constraintStart_toStartOf="@+id/usernameInput"
+        app:layout_constraintTop_toBottomOf="@+id/usernameInput"
         tools:ignore="RtlSymmetry,TouchTargetSizeCheck" />
 
     <TextView
@@ -78,8 +80,8 @@
         android:lineSpacingExtra="2sp"
         android:text="@string/forgot_pass"
         android:textAppearance="@style/forgot_pass"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/passwordInput"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
@@ -94,8 +96,8 @@
         android:paddingEnd="38dp"
         android:text="@string/log_in"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
+        app:layout_constraintEnd_toEndOf="@+id/passwordInput"
+        app:layout_constraintStart_toStartOf="@+id/passwordInput"
         app:layout_constraintTop_toBottomOf="@+id/forgot_pass"
         tools:ignore="RtlSymmetry" />
 

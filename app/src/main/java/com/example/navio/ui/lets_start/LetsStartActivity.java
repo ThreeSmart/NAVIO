@@ -1,7 +1,6 @@
 package com.example.navio.ui.lets_start;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.navio.R;
-import com.example.navio.backend.LocalStorage;
+import com.example.navio.backend.local_storage.LocalStorage;
 import com.example.navio.ui.login.LoginActivity;
 
 public class LetsStartActivity extends AppCompatActivity {
