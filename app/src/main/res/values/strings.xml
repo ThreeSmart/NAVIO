@@ -22,4 +22,8 @@
     <string name="local_authentication">Authentication</string>
     <string name="local_jwt">JWT</string>
     <string name="log_out">Log out</string>
+    <string name="back_arrow"><![CDATA[<]]></string>
+    <string name="password_reset">Password reset</string>
+    <string name="email">Email</string>
+    <string name="send">Send</string>
 </resources>

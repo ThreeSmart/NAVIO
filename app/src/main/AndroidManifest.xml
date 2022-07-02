@@ -15,7 +15,9 @@
         android:theme="@style/Theme.NAVIO"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-
+        <activity
+            android:name=".SendingEmailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
@@ -27,7 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".ui.forgot_pass.ForgotPasswordActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.login.LoginActivity" />
         <activity
             android:name=".ui.lets_start.LetsStartActivity"
             android:exported="false"
