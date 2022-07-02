@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.navio.backend.local_storage.LocalStorage;
 import com.example.navio.backend.model.UserLoginDetails;
 import com.example.navio.backend.service.UserService;
 import com.example.navio.backend.util.messages.ErrorMessageHandler;
@@ -39,9 +40,19 @@ public class LoginActivity extends AppCompatActivity {
                     .login(this,
                             new UserLoginDetails(username, password),
                             s -> {
-                                final Intent intent = new Intent(this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                                try {
+                                    final String jwt = String.valueOf(s.get("jwt"));
+                                    LocalStorage.getInstance()
+                                            .setContext(this)
+                                            .setMode(MODE_PRIVATE)
+                                            .setKey(getString(R.string.local_authentication))
+                                            .writeString(getString(R.string.local_jwt), jwt);
+                                    final Intent intent = new Intent(this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             },
                             s -> {
                                 try {
