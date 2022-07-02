@@ -1,4 +1,4 @@
-package com.example.navio.ui.splach;
+package com.example.navio.ui.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,7 @@ import com.example.navio.R;
 import com.example.navio.backend.local_storage.LocalStorage;
 import com.example.navio.ui.lets_start.LetsStartActivity;
 import com.example.navio.ui.login.LoginActivity;
+import com.example.navio.ui.main.MainActivity;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -30,8 +31,23 @@ public class SplashActivity extends AppCompatActivity {
                     .getBoolean(getString(R.string.local_executed));
 
             final Intent intent;
-            if (letsStartExecuted) intent = new Intent(context, LoginActivity.class);
-            else intent = new Intent(context, LetsStartActivity.class);
+            if (!letsStartExecuted) {
+                intent = new Intent(context, LetsStartActivity.class);
+            } else {
+                final String jwt = LocalStorage.getInstance()
+                        .setContext(this)
+                        .setMode(MODE_PRIVATE)
+                        .setKey(getString(R.string.local_authentication))
+                        .getString(getString(R.string.local_jwt));
+
+                // TODO change jwt validation with parser or something written in JWT connected class
+                if (jwt == null) {
+                    intent = new Intent(context, LoginActivity.class);
+                } else {
+                    intent = new Intent(context, MainActivity.class);
+                }
+
+            }
 
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
