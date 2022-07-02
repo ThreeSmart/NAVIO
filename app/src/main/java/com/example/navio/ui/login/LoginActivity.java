@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
                                     final String jwt = String.valueOf(s.get("jwt"));
                                     LocalStorage.getInstance()
                                             .setContext(this)
-                                            .setMode(MODE_PRIVATE)
                                             .setKey(getString(R.string.local_authentication))
                                             .writeString(getString(R.string.local_jwt), jwt);
                                     final Intent intent = new Intent(this, MainActivity.class);

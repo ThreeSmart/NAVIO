@@ -1,11 +1,13 @@
 package com.example.navio.backend.local_storage;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 public class LocalStorage {
-    private int mode;
+    private int mode = MODE_PRIVATE;
     private String key;
     private Context context;
 
@@ -48,6 +50,12 @@ public class LocalStorage {
     public void writeString(final String key, final String value) {
         @SuppressLint("CommitPrefEdits") final SharedPreferences.Editor editor = getPreferences().edit();
         editor.putString(key, value);
+        editor.apply();
+    }
+
+    public void removeString(final String key) {
+        @SuppressLint("CommitPrefEdits") final SharedPreferences.Editor editor = getPreferences().edit();
+        editor.remove(key);
         editor.apply();
     }
 

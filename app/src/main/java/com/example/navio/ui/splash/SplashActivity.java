@@ -26,7 +26,6 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             boolean letsStartExecuted = LocalStorage.getInstance()
                     .setContext(this)
-                    .setMode(MODE_PRIVATE)
                     .setKey(getString(R.string.local_lets_start))
                     .getBoolean(getString(R.string.local_executed));
 
@@ -36,7 +35,6 @@ public class SplashActivity extends AppCompatActivity {
             } else {
                 final String jwt = LocalStorage.getInstance()
                         .setContext(this)
-                        .setMode(MODE_PRIVATE)
                         .setKey(getString(R.string.local_authentication))
                         .getString(getString(R.string.local_jwt));
 

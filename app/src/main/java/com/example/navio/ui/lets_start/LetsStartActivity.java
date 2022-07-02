@@ -141,7 +141,6 @@ public class LetsStartActivity extends AppCompatActivity {
         LocalStorage.getInstance()
                 .setContext(this)
                 .setKey(getString(R.string.local_lets_start))
-                .setMode(MODE_PRIVATE)
                 .writeBoolean(getString(R.string.local_executed), true);
     }
 
