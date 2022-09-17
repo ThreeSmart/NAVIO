@@ -26,4 +26,5 @@
     <string name="password_reset">Password reset</string>
     <string name="email">Email</string>
     <string name="send">Send</string>
+    <string name="sending_an_email">Sending an email</string>
 </resources>

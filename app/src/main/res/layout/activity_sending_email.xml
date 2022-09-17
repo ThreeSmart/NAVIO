@@ -4,10 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SendingEmailActivity">
+    tools:context=".ui.forgot_pass.SendingEmailActivity">
+
+    <TextView
+        android:id="@+id/sending_an_email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_extra_light"
+        android:text="@string/sending_an_email"
+        android:textColor="@color/ts_color"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/sending_icon"
+        app:layout_constraintStart_toStartOf="@+id/sending_icon"
+        app:layout_constraintTop_toBottomOf="@+id/sending_icon" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/sending_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
