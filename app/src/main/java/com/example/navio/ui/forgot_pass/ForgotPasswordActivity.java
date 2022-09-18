@@ -17,6 +17,9 @@ import com.example.navio.ui.login.LoginActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     @Override
@@ -41,21 +44,33 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 final JSONObject body = new JSONObject();
                 body.put("email", emailInput.getText().toString());
                 body.put("email_type", EmailType.RESET_PASSWORD);
+
+                final long apiCallStart = System.currentTimeMillis();
                 API.makePost(
                         this,
                         "/send/email/by_type",
                         body,
                         e -> {
-                            final Intent intentt = new Intent(this, LoginActivity.class);
+                            final Intent loginIntent = new Intent(this, LoginActivity.class);
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             System.out.println(e.get("response"));
-                            startActivity(intentt);
-                            finish();
+
+                            final long callDuration = System.currentTimeMillis() - apiCallStart;
+                            if (callDuration <= 3000) {
+                                final Timer timer = new Timer();
+                                timer.schedule(new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        startActivity(loginIntent);
+                                        finish();
+                                    }
+                                }, Math.max(3000 - callDuration, 1000));
+                            }
                         },
                         e -> {
-                            final Intent intentt = new Intent(this, LoginActivity.class);
+                            final Intent loginIntent = new Intent(this, LoginActivity.class);
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            startActivity(intentt);
+                            startActivity(loginIntent);
                             finish();
                             Toast.makeText(this, "Failed to send email", Toast.LENGTH_SHORT).show();
                         }
