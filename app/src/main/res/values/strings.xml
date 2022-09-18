@@ -11,7 +11,7 @@
     <string name="if_you_are_">If you are a new employee please \n contact your manager</string>
     <string name="lets_start">Let\'s start!</string>
     <string name="sign_in">Sign In</string>
-    <string name="username">Username</string>
+    <string name="Username">Username</string>
     <string name="password">Password</string>
     <string name="forgot_pass">Forgot Password?</string>
     <string name="log_in">Log In</string>
@@ -24,7 +24,12 @@
     <string name="log_out">Log out</string>
     <string name="back_arrow"><![CDATA[<]]></string>
     <string name="password_reset">Password reset</string>
-    <string name="email">Email</string>
+    <string name="Email">Email</string>
+    <string name="email">email</string>
     <string name="send">Send</string>
     <string name="sending_an_email">Sending an email</string>
+    <string name="name">name</string>
+    <string name="surname">surname</string>
+    <string name="username">username</string>
+    <string name="department_id_x">Department ID: x</string>
 </resources>
