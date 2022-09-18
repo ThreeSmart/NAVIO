@@ -28,4 +28,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sending_email_icon" />
+
+    <TextView
+        android:id="@+id/check_your_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/agencyfb_bold"
+        android:text="Check your email"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/sending_an_email_text"
+        app:layout_constraintStart_toStartOf="@+id/sending_an_email_text"
+        app:layout_constraintTop_toBottomOf="@+id/sending_an_email_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ public class SendingEmailActivity extends AppCompatActivity {
 
         final ImageView sendingIcon = findViewById(R.id.sending_icon);
         final TextView sendingCodeText = findViewById(R.id.sending_an_email_text);
+        final TextView checkYourEmailText = findViewById(R.id.check_your_email);
 
         final Animation sendingAnimation = new TranslateAnimation(0.0f, 0f, 50.0f, 100.0f);
         sendingAnimation.setDuration(800);
@@ -27,6 +28,10 @@ public class SendingEmailActivity extends AppCompatActivity {
         final Animation sendingCodeTextAnimation = new TranslateAnimation(0.0f, 0f, 150.0f, 50.0f);
         sendingCodeTextAnimation.setDuration(800);
         sendingCodeText.startAnimation(sendingCodeTextAnimation);
+
+        final Animation checkYourEmailTextAnimation = new TranslateAnimation(0.0f, 0f, 150.0f, 50.0f);
+        checkYourEmailTextAnimation.setDuration(800);
+        checkYourEmailText.startAnimation(checkYourEmailTextAnimation);
 
         sendingAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -42,6 +47,10 @@ public class SendingEmailActivity extends AppCompatActivity {
                 sendingCodeTextAnimation.setFillAfter(true);
                 sendingCodeText.setY(sendingCodeText.getY() + 50);
                 sendingCodeText.clearAnimation();
+
+                checkYourEmailTextAnimation.setFillAfter(true);
+                checkYourEmailText.setY(checkYourEmailText.getY() + 50);
+                checkYourEmailText.clearAnimation();
             }
 
             @Override
