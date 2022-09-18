@@ -40,7 +40,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/login_input"
         android:ems="10"
-        android:hint="@string/username"
+        android:hint="@string/Username"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
         android:text="rshakhnazarii"
