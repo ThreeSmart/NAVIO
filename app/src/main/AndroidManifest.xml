@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".ui.home.cards.PendingTasksViewMoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.account.pages.AboutActivity"
             android:exported="false"
             android:theme="@style/Theme.NAVIO.NoActionBar" />
