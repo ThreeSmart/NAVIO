@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="163dp"
+    android:height="163dp"
+    android:viewportWidth="163"
+    android:viewportHeight="163">
+
+    <group>
+        <clip-path android:pathData="M163 81.5C163 126.511 126.511 163 81.5 163C36.4888 163 0 126.511 0 81.5C0 36.4888 36.4888 0 81.5 0C126.511 0 163 36.4888 163 81.5Z" />
+        <path
+            android:fillColor="#B2EBFF"
+            android:pathData="M0 0V163H163V0" />
+    </group>
+
+    <group>
+        <path android:name="@string/log_in" ></path>
+    </group>
+
+</vector>
+
