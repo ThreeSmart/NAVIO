@@ -25,6 +25,8 @@ public class MessagesFragment extends Fragment {
         return root;
     }
 
+    // Test comment
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
