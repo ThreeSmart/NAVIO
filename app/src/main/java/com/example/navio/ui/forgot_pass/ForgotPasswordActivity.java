@@ -1,11 +1,13 @@
 package com.example.navio.ui.forgot_pass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +29,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        final TextView backArrow = findViewById(R.id.back_arrow);
         final Button sendEmailButton = findViewById(R.id.send_email_button);
         final EditText emailInput = findViewById(R.id.input_email);
 
+        final ConstraintLayout backArrowLayout = findViewById(R.id.back_arrow_layout);
+        backArrowLayout.setOnClickListener(v -> finish());
+
+        final ImageView backArrow = findViewById(R.id.back_arrow);
         backArrow.setOnClickListener(v -> finish());
 
         sendEmailButton.setOnClickListener(v -> {
