@@ -46,4 +46,15 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_test">test</string>
     <string name="how_can_we_help_you">How can we help you?</string>
+    <string name="change_profile_photo">Change profile photo</string>
+    <string name="Surname">Surname</string>
+    <string name="Name">Name</string>
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
+    <string name="Date_of_birth">Date of birth</string>
+    <string name="Phone_Number">Phone number</string>
+    <string name="Gender">Gender</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
+    <string name="Update_profile">Update profile</string>
+    <string name="Employee_ID">Employee ID</string>
 </resources>
