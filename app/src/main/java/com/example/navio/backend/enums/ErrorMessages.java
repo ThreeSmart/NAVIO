@@ -15,7 +15,7 @@ public enum ErrorMessages {
                 return message.label;
             }
         }
-        return null;
+        return "Something went wrong!";
     }
 
 }

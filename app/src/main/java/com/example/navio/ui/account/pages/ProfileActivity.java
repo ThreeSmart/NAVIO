@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.auth0.android.jwt.JWT;
 import com.example.navio.R;
 import com.example.navio.backend.local_storage.LocalStorage;
+import com.example.navio.backend.model.User;
+import com.example.navio.backend.service.AuthenticationService;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -46,7 +48,6 @@ public class ProfileActivity extends AppCompatActivity {
         final ImageView femaleBox = findViewById(R.id.female_box);
         final Button updateProfileButton = findViewById(R.id.update_profile_button);
         final String[] genderValue = {null};
-
 
         maleBox.setOnClickListener(v -> {
             System.out.println("chi galis?");
@@ -105,29 +106,19 @@ public class ProfileActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        final String jwtToken = LocalStorage.getInstance()
-                .setContext(getApplicationContext())
-                .setKey(getString(R.string.local_authentication))
-                .getString(getString(R.string.local_jwt));
+        final User authenticatedUser = AuthenticationService.getAuthenticatedUser(this);
+        employeeIdInput.setText(String.valueOf(authenticatedUser.getId()));
+        nameInput.setText(authenticatedUser.getName());
+        surnameInput.setText(authenticatedUser.getSurname());
+        emailInput.setText(authenticatedUser.getEmail());
+        usernameInput.setText(authenticatedUser.getUsername());
 
-        if (jwtToken != null) {
-            final JWT jwt = new JWT(jwtToken);
-            final String id = jwt.getClaim("id").asString();
-            employeeIdInput.setText(id);
-            final String name = jwt.getClaim("name").asString();
-            nameInput.setText(name);
-            final String surname = jwt.getClaim("surname").asString();
-            surnameInput.setText(surname);
-            final String email = jwt.getClaim("email").asString();
-            emailInput.setText(email);
-            final String username = jwt.getClaim("username").asString();
-            usernameInput.setText(username);
-            genderValue[0] = "MALE";
-            if ("MALE".equals(genderValue[0])) {
-                maleBox.setImageResource(R.drawable.gender_check);
-            } else if ("FEMALE".equals(genderValue[0])) {
-                femaleBox.setImageResource(R.drawable.gender_check);
-            }
+        // TODO, implement this logic in api (to have gender)
+        genderValue[0] = "MALE";
+        if ("MALE".equals(genderValue[0])) {
+            maleBox.setImageResource(R.drawable.gender_check);
+        } else if ("FEMALE".equals(genderValue[0])) {
+            femaleBox.setImageResource(R.drawable.gender_check);
         }
 
     }

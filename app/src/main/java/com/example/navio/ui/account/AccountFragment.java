@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.auth0.android.jwt.JWT;
 import com.example.navio.R;
 import com.example.navio.backend.local_storage.LocalStorage;
+import com.example.navio.backend.model.User;
 import com.example.navio.backend.service.AuthenticationService;
 import com.example.navio.databinding.FragmentAccountBinding;
 import com.example.navio.ui.ScreenSizeBalancer;
@@ -29,6 +30,7 @@ import com.example.navio.ui.account.pages.SettingsActivity;
 import com.example.navio.ui.splash.SplashActivity;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class AccountFragment extends Fragment {
@@ -52,8 +54,8 @@ public class AccountFragment extends Fragment {
         final ScreenSizeBalancer screenSizeBalancer = new ScreenSizeBalancer(getResources());
         nameAndSurname.setMaxWidth(screenSizeBalancer.getWidthFor(200));
 
-        nameAndSurname.setText(makeNameAndSurnameLine(AuthenticationService.getAuthenticatedUser().getName(), AuthenticationService.getAuthenticatedUser().getSurname()));
-
+        final User authenticatedUser = AuthenticationService.getAuthenticatedUser(root.getContext());
+        nameAndSurname.setText(makeNameAndSurnameLine(authenticatedUser.getName(), authenticatedUser.getSurname()));
 
         profileItemLayout.setOnClickListener(v -> {
             final Intent intent = new Intent(root.getContext(), ProfileActivity.class);

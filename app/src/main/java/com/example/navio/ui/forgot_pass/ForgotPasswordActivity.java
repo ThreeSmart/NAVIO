@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.navio.R;
 import com.example.navio.backend.api.API;
 import com.example.navio.backend.enums.EmailType;
+import com.example.navio.backend.model.ForgotPasswordDetails;
+import com.example.navio.backend.service.UserService;
 import com.example.navio.ui.login.LoginActivity;
 
 import org.json.JSONException;
@@ -23,6 +25,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
+
+    private final UserService userService = UserService.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,53 +42,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         final ImageView backArrow = findViewById(R.id.back_arrow);
         backArrow.setOnClickListener(v -> finish());
 
-        sendEmailButton.setOnClickListener(v -> {
-
-            try {
-                final Intent intent = new Intent(this, SendingEmailActivity.class);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                startActivity(intent);
-                finish();
-
-                final JSONObject body = new JSONObject();
-                body.put("email", emailInput.getText().toString());
-                body.put("email_type", EmailType.RESET_PASSWORD);
-
-                final long apiCallStart = System.currentTimeMillis();
-                API.makePost(
-                        this,
-                        "/send/email/by_type",
-                        body,
-                        e -> {
-                            final Intent loginIntent = new Intent(this, LoginActivity.class);
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            System.out.println(e.get("response"));
-
-                            final long callDuration = System.currentTimeMillis() - apiCallStart;
-                            if (callDuration <= 3000) {
-                                final Timer timer = new Timer();
-                                timer.schedule(new TimerTask() {
-                                    @Override
-                                    public void run() {
-                                        startActivity(loginIntent);
-                                        finish();
-                                    }
-                                }, Math.max(3000 - callDuration, 1000));
-                            }
-                        },
-                        e -> {
-                            final Intent loginIntent = new Intent(this, LoginActivity.class);
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            startActivity(loginIntent);
-                            finish();
-                            Toast.makeText(this, "Failed to send email", Toast.LENGTH_SHORT).show();
-                        }
-                );
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        });
+        sendEmailButton.setOnClickListener(v -> userService.forgotPassword(this, new ForgotPasswordDetails(emailInput.getText().toString())));
 
     }
 

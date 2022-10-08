@@ -9,12 +9,15 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.navio.backend.service.JWTService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class API {
@@ -23,51 +26,51 @@ public class API {
     private static final String PROTOCOL = "http";
     private static final String BACKEND_URL = PROTOCOL + "://" + IP_ADDRESS + ":" + IP_PORT;
 
+    protected API() {
+    }
+
     public static void makeGet(final Context context,
                                final String postfix,
-                               final CallBack callBack) {
+                               final CallBack callBack,
+                               final CallBack errorCallBack) {
         System.out.println(BACKEND_URL + postfix);
         final StringRequest stringRequest = new StringRequest(
                 com.android.volley.Request.Method.GET,
                 BACKEND_URL + postfix,
                 s -> {
                     try {
-                        final JSONObject jsonObject = new JSONObject(s);
-                        callBack.execute(jsonObject);
+                        callBack.execute(s);
                     } catch (JSONException e) {
                         System.out.println("Could not parse (method: GET)");
                         e.printStackTrace();
                     }
                 },
-                System.out::println
-        );
+                error -> {
+                    error.printStackTrace();
+                    try {
+                        errorCallBack.execute(error.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headerMap = new HashMap<>();
+                headerMap.put("Content-Type", "application/json; charset=utf-8");
+                headerMap.put("Authorization", "Bearer " + JWTService.getInstance(context).getJwtToken());
+                return headerMap;
+            }
+        };
         Volley.newRequestQueue(context).add(stringRequest);
     }
 
-    public synchronized static String makeSynchronizedPost(final Context context,
-                                                           final String postfix,
-                                                           final JSONObject body) throws InterruptedException {
-        String result = makePost(context,
-                postfix,
-                body,
-                s -> {
-                },
-                s -> {
-                }
-        );
-
-        System.out.println("helanq");
-
-        return result;
-    }
-
-    public synchronized static String makePost(final Context context,
-                                               final String postfix,
-                                               final JSONObject body,
-                                               final CallBack callBack,
-                                               final CallBack errorCallBack) {
+    protected static void makePost(final Context context,
+                                   final String postfix,
+                                   final JSONObject body,
+                                   final CallBack callBack,
+                                   final CallBack errorCallBack) {
         final RequestQueue requestQueue = Volley.newRequestQueue(context);
-        final String[] result = {"initt"};
         try {
             final String requestBody = body.toString();
             final StringRequest stringRequest = new StringRequest(
@@ -79,9 +82,7 @@ public class API {
                         try {
                             if (response == null) return;
                             final String parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-                            final JSONObject jsonObject = new JSONObject(parsed);
-                            errorCallBack.execute(jsonObject);
-                            result[0] = parsed;
+                            errorCallBack.execute(parsed);
                         } catch (final UnsupportedEncodingException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
@@ -96,6 +97,14 @@ public class API {
                 }
 
                 @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> headerMap = new HashMap<>();
+                    headerMap.put("Content-Type", "application/json");
+                    headerMap.put("Authorization", "Bearer " + JWTService.getInstance(context).getJwtToken());
+                    return headerMap;
+                }
+
+                @Override
                 public byte[] getBody() {
                     return requestBody.getBytes(StandardCharsets.UTF_8);
                 }
@@ -106,9 +115,7 @@ public class API {
                     if (response != null) {
                         try {
                             String parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-                            final JSONObject jsonObject = new JSONObject(parsed);
-                            callBack.execute(jsonObject);
-                            result[0] = parsed;
+                            callBack.execute(parsed);
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
@@ -121,12 +128,9 @@ public class API {
                 }
             };
             requestQueue.add(stringRequest);
-            return result[0];
         } catch (final Exception e) {
             e.printStackTrace();
-            return null;
         }
-
     }
 
 }

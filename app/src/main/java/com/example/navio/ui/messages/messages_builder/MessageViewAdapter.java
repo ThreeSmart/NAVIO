@@ -16,26 +16,28 @@ import com.example.navio.ui.messages.util.Message;
 import java.text.DateFormat;
 import java.util.ArrayList;
 
-public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context context;
     ArrayList<Message> list;
     public static final int MESSAGE_TYPE_IN = 0;
     public static final int MESSAGE_TYPE_OUT = 1;
 
-    public MessageViewAdapter(final Context context,final ArrayList<Message> list) {
+    public MessageViewAdapter(final Context context, final ArrayList<Message> list) {
         this.context = context;
         this.list = list;
     }
 
     private class MessageInViewHolder extends RecyclerView.ViewHolder {
 
-        TextView messageContentTV,dateTV;
+        TextView messageContentTV, dateTV;
+
         MessageInViewHolder(final View itemView) {
             super(itemView);
             messageContentTV = itemView.findViewById(R.id.message_text);
             dateTV = itemView.findViewById(R.id.date_text);
         }
+
         void bind(int position) {
             Message message = list.get(position);
             messageContentTV.setText(message.getContent());
@@ -45,12 +47,14 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private class MessageOutViewHolder extends RecyclerView.ViewHolder {
 
-        TextView messageContentTV,dateTV;
+        TextView messageContentTV, dateTV;
+
         MessageOutViewHolder(final View itemView) {
             super(itemView);
             messageContentTV = itemView.findViewById(R.id.message_text);
             dateTV = itemView.findViewById(R.id.date_text);
         }
+
         void bind(int position) {
             Message message = list.get(position);
             messageContentTV.setText(message.getContent());
@@ -85,8 +89,8 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return getMessageType(position);
     }
 
-    private int getMessageType(int position){
-        if (AuthenticationService.getAuthenticatedUser().getId() == list.get(position).getFromUserId()){
+    private int getMessageType(int position) {
+        if (AuthenticationService.getAuthenticatedUser(context).getId() == list.get(position).getFromUserId()) {
             return MESSAGE_TYPE_OUT;
         }
         return MESSAGE_TYPE_IN;
