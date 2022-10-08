@@ -5,6 +5,6 @@ import org.json.JSONObject;
 
 public interface CallBack {
 
-    void execute(final JSONObject s) throws JSONException;
+    void execute(final String s) throws JSONException;
 
 }

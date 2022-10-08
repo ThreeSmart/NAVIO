@@ -10,6 +10,7 @@ import android.os.Handler;
 
 import com.example.navio.R;
 import com.example.navio.backend.local_storage.LocalStorage;
+import com.example.navio.backend.service.JWTService;
 import com.example.navio.ui.lets_start.LetsStartActivity;
 import com.example.navio.ui.login.LoginActivity;
 import com.example.navio.ui.main.MainActivity;
@@ -33,10 +34,9 @@ public class SplashActivity extends AppCompatActivity {
             if (!letsStartExecuted) {
                 intent = new Intent(context, LetsStartActivity.class);
             } else {
-                final String jwt = LocalStorage.getInstance()
-                        .setContext(this)
-                        .setKey(getString(R.string.local_authentication))
-                        .getString(getString(R.string.local_jwt));
+                final String jwt = JWTService.getInstance(this).getJwtToken();
+
+                System.out.println("JWT: " + jwt);
 
                 // TODO change jwt validation with parser or something written in JWT connected class
                 if (jwt == null) {

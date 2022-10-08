@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import com.auth0.android.jwt.JWT;
 import com.example.navio.R;
 import com.example.navio.backend.local_storage.LocalStorage;
+import com.example.navio.backend.model.User;
+import com.example.navio.backend.service.AuthenticationService;
 import com.example.navio.databinding.FragmentHomeBinding;
 import com.example.navio.ui.home.cards.PendingTasksViewMoreActivity;
 import com.example.navio.ui.splash.SplashActivity;
@@ -30,16 +32,9 @@ public class HomeFragment extends Fragment {
         final TextView nameTextView = root.findViewById(R.id.name);
         final ConstraintLayout pendingTasksViewMoreLayout = root.findViewById(R.id.pending_tasks_view_more_layout);
 
-        final String jwtToken = LocalStorage.getInstance()
-                .setContext(root.getContext())
-                .setKey(getString(R.string.local_authentication))
-                .getString(getString(R.string.local_jwt));
-
-        if (jwtToken != null) {
-            final JWT jwt = new JWT(jwtToken);
-            final String name = jwt.getClaim("name").asString();
-            nameTextView.setText(name);
-        }
+        final User authenticatedUser = AuthenticationService.getAuthenticatedUser(root.getContext());
+        final String name = authenticatedUser.getName();
+        nameTextView.setText(name);
 
         pendingTasksViewMoreLayout.setOnClickListener(v -> {
             final Intent intent = new Intent(root.getContext(), PendingTasksViewMoreActivity.class);

@@ -2,6 +2,8 @@ package com.example.navio.ui.forgot_pass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -9,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.navio.R;
+import com.example.navio.ui.login.LoginActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SendingEmailActivity extends AppCompatActivity {
 
@@ -58,5 +64,17 @@ public class SendingEmailActivity extends AppCompatActivity {
 
             }
         });
+
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                final Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                startActivity(loginIntent);
+                finish();
+            }
+        }, 2000);
+
     }
 }
