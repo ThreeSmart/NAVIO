@@ -1,4 +1,4 @@
-package com.example.navio.backend;
+package com.example.navio.ui.map.web_builder;
 
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;

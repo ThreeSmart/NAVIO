@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.auth0.android.jwt.JWT;
 import com.example.navio.R;
 import com.example.navio.backend.local_storage.LocalStorage;
+import com.example.navio.backend.model.User;
+import com.example.navio.backend.service.AuthenticationService;
 import com.example.navio.ui.lets_start.LetsStartActivity;
 import com.example.navio.ui.login.LoginActivity;
 import com.example.navio.ui.main.MainActivity;
@@ -33,15 +36,19 @@ public class SplashActivity extends AppCompatActivity {
             if (!letsStartExecuted) {
                 intent = new Intent(context, LetsStartActivity.class);
             } else {
-                final String jwt = LocalStorage.getInstance()
+                final String jwtString = LocalStorage.getInstance()
                         .setContext(this)
                         .setKey(getString(R.string.local_authentication))
                         .getString(getString(R.string.local_jwt));
 
                 // TODO change jwt validation with parser or something written in JWT connected class
-                if (jwt == null) {
+                if (jwtString == null) {
                     intent = new Intent(context, LoginActivity.class);
                 } else {
+
+                    final JWT jwt = new JWT(jwtString);
+                    AuthenticationService.authenticateUser(jwt);
+
                     intent = new Intent(context, MainActivity.class);
                 }
 

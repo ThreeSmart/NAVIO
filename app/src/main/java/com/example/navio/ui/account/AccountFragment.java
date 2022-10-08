@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.auth0.android.jwt.JWT;
 import com.example.navio.R;
 import com.example.navio.backend.local_storage.LocalStorage;
+import com.example.navio.backend.service.AuthenticationService;
 import com.example.navio.databinding.FragmentAccountBinding;
 import com.example.navio.ui.ScreenSizeBalancer;
 import com.example.navio.ui.account.pages.AboutActivity;
@@ -51,18 +52,8 @@ public class AccountFragment extends Fragment {
         final ScreenSizeBalancer screenSizeBalancer = new ScreenSizeBalancer(getResources());
         nameAndSurname.setMaxWidth(screenSizeBalancer.getWidthFor(200));
 
-        final String jwtToken = LocalStorage.getInstance()
-                .setContext(root.getContext())
-                .setKey(getString(R.string.local_authentication))
-                .getString(getString(R.string.local_jwt));
+        nameAndSurname.setText(makeNameAndSurnameLine(AuthenticationService.getAuthenticatedUser().getName(), AuthenticationService.getAuthenticatedUser().getSurname()));
 
-        if (jwtToken != null) {
-            final JWT jwt = new JWT(jwtToken);
-            final String name = jwt.getClaim("name").asString();
-            final String surname = jwt.getClaim("surname").asString();
-
-            nameAndSurname.setText(makeNameAndSurnameLine(name, surname));
-        }
 
         profileItemLayout.setOnClickListener(v -> {
             final Intent intent = new Intent(root.getContext(), ProfileActivity.class);

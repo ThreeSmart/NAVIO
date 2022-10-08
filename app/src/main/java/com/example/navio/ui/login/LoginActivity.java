@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.auth0.android.jwt.JWT;
 import com.example.navio.backend.local_storage.LocalStorage;
+import com.example.navio.backend.model.User;
 import com.example.navio.backend.model.UserLoginDetails;
+import com.example.navio.backend.service.AuthenticationService;
 import com.example.navio.backend.service.UserService;
 import com.example.navio.backend.util.messages.ErrorMessageHandler;
 import com.example.navio.ui.forgot_pass.ForgotPasswordActivity;
@@ -45,11 +48,16 @@ public class LoginActivity extends AppCompatActivity {
                             new UserLoginDetails(username, password),
                             s -> {
                                 try {
-                                    final String jwt = String.valueOf(s.get("jwt"));
+                                    final String jwtToken = String.valueOf(s.get("jwt"));
                                     LocalStorage.getInstance()
                                             .setContext(this)
                                             .setKey(getString(R.string.local_authentication))
-                                            .writeString(getString(R.string.local_jwt), jwt);
+                                            .writeString(getString(R.string.local_jwt), jwtToken);
+
+                                    final JWT jwt = new JWT(jwtToken);
+
+                                    AuthenticationService.authenticateUser(jwt);
+
                                     final Intent intent = new Intent(this, MainActivity.class);
                                     startActivity(intent);
                                     finish();

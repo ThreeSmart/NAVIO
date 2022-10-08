@@ -9,6 +9,25 @@
         <entry key="..\:/ThreeSmart Projects/NavIO/NAVIO/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Razmik/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Razmik/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/fragment_map.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/drawable/background_item_msg_in.xml" value="0.1945" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/drawable/background_item_msg_out.xml" value="0.232" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/drawable/background_msg_typeing.xml" value="0.232" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/drawable/icon_back.xml" value="0.1945" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_about.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_account.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_forgot_password.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_login.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_pendingtasks_view_more.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/activity_splash.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/fragment_account.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/fragment_home.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/fragment_messages.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/item_message.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/item_message_in.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/item_message_out.xml" value="0.4581005586592179" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/layout/message_item.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/rmanvely/Desktop/Programming/ThreeSmart/NAVIO/app/src/main/res/menu/bottom_nav_menu.xml" value="0.30416666666666664" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/account_icon.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/account_image_background.xml" value="0.1" />

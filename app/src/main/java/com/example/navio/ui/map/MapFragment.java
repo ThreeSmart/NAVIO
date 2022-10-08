@@ -5,7 +5,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -14,9 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.navio.R;
-import com.example.navio.backend.WebBuilder;
-import com.example.navio.backend.api.CallBack;
 import com.example.navio.databinding.FragmentMapBinding;
+import com.example.navio.ui.map.web_builder.WebBuilder;
 
 public class MapFragment extends Fragment {
 
