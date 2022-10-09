@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".ui.messages.MessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.cards.PendingTasksViewMoreActivity"
             android:exported="false" />
         <activity
@@ -44,10 +47,10 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NAVIO.NoActionBar"
-            tools:ignore="LockedOrientationActivity"
-            >
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
