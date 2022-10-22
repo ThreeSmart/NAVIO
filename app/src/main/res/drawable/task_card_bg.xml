@@ -1,23 +1,10 @@
-<vector
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="1250dp"
-    android:height="433dp"
-    android:viewportWidth="1250"
-    android:viewportHeight="433"
-    >
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!--your desired colour for solid-->
 
-    <group>
+    <stroke
+        android:width="3dp"
+        android:color="#FFFFFF" /> <!--your desired colour for border-->
 
-        <clip-path
-            android:pathData="M50 0H1200C1227.61 0 1250 22.3858 1250 50V383C1250 410.614 1227.61 433 1200 433H50C22.3858 433 0 410.614 0 383V50C0 22.3858 22.3858 0 50 0Z"
-            />
+    <corners android:radius="15dp" /> <!--shape rounded value-->
 
-        <path
-            android:pathData="M0 0V433H1250V0"
-            android:fillColor="#FFFFFF"
-            />
-
-    </group>
-
-</vector>
+</shape>
