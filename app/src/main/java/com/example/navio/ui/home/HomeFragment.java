@@ -17,6 +17,7 @@ import com.example.navio.backend.enums.TaskStatus;
 import com.example.navio.backend.model.User;
 import com.example.navio.backend.service.AuthenticationService;
 import com.example.navio.databinding.FragmentHomeBinding;
+import com.example.navio.ui.home.cards.CompleteTasksViewMoreActivity;
 import com.example.navio.ui.home.cards.PendingTasksViewMoreActivity;
 
 public class HomeFragment extends Fragment {
@@ -24,6 +25,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private final TaskAPI taskAPI = TaskAPI.getInstance();
     TextView pendingTasksCount;
+    TextView completeTasksCount;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -32,9 +34,12 @@ public class HomeFragment extends Fragment {
 
         final TextView nameTextView = root.findViewById(R.id.name);
         final ConstraintLayout pendingTasksViewMoreLayout = root.findViewById(R.id.pending_tasks_view_more_layout);
+        final ConstraintLayout completeTasksViewMoreLayout = root.findViewById(R.id.complete_tasks_view_more_layout);
         pendingTasksCount = root.findViewById(R.id.pending_tasks_count);
+        completeTasksCount = root.findViewById(R.id.complete_tasks_count);
+
         pendingTasksCount.setText("");
-//        taskAPI.updateTaskCount(getContext(), pendingTasksCount, TaskStatus.PENDING);
+        completeTasksCount.setText("");
 
         final User authenticatedUser = AuthenticationService.getAuthenticatedUser(root.getContext());
         final String name = authenticatedUser.getName();
@@ -45,12 +50,18 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        completeTasksViewMoreLayout.setOnClickListener(v -> {
+            final Intent intent = new Intent(root.getContext(), CompleteTasksViewMoreActivity.class);
+            startActivity(intent);
+        });
+
         return root;
     }
 
     @Override
     public void onStart() {
         taskAPI.updateTaskCount(getContext(), pendingTasksCount, TaskStatus.PENDING);
+        taskAPI.updateTaskCount(getContext(), completeTasksCount, TaskStatus.COMPLETE);
         super.onStart();
     }
 

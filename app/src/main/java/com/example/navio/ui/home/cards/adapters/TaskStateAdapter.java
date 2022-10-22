@@ -53,25 +53,26 @@ public class TaskStateAdapter extends RecyclerView.Adapter<TaskStateAdapter.View
                 break;
         }
 
-        holder.status.setOnClickListener(v -> {
-            taskAPI.makeTaskComplete(
-                    inflater.getContext(),
-                    task,
-                    s -> Toast.makeText(inflater.getContext(), "Task '" + task.getName() + "' is now completed.", Toast.LENGTH_SHORT).show()
-            );
-            tasks.remove(task);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, tasks.size());
-        });
 
         final String status = task.getStatus();
         switch (status) {
             case "PENDING":
                 holder.status.setImageResource(R.drawable.pending_status_bg);
+                holder.status.setOnClickListener(v -> {
+                    taskAPI.makeTaskComplete(
+                            inflater.getContext(),
+                            task,
+                            s -> Toast.makeText(inflater.getContext(), "Task '" + task.getName() + "' is now completed.", Toast.LENGTH_SHORT).show()
+                    );
+                    tasks.remove(task);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, tasks.size());
+                });
                 break;
 
             case "COMPLETE":
                 holder.status.setImageResource(R.drawable.complete_status_bg);
+                Toast.makeText(inflater.getContext(), "The task is complete", Toast.LENGTH_SHORT).show();
                 break;
         }
 
