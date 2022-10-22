@@ -1,28 +1,21 @@
 package com.example.navio.ui.account.pages;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.auth0.android.jwt.JWT;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.navio.R;
-import com.example.navio.backend.local_storage.LocalStorage;
 import com.example.navio.backend.model.User;
 import com.example.navio.backend.service.AuthenticationService;
 
 import java.util.Arrays;
-import java.util.Calendar;
 
 public class ProfileActivity extends AppCompatActivity {
 
