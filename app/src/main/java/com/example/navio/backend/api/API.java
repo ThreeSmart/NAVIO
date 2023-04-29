@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class API {
-    private static final String IP_ADDRESS = "13.51.249.250";
+    private static final String IP_ADDRESS = "16.16.118.246";
     private static final String IP_PORT = "7801";
     private static final String PROTOCOL = "http";
     private static final String BACKEND_URL = PROTOCOL + "://" + IP_ADDRESS + ":" + IP_PORT;
